@@ -14,7 +14,6 @@ jobs:
       - name: Download Ransomware APKs
         run: |
           curl -O http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
-          curl -O http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Scareware-APKs.zip
 
       - name: Upload to Release
         uses: ncipollo/release-action@v1
