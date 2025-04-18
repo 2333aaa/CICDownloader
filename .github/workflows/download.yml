@@ -16,9 +16,14 @@ jobs:
 
       - name: Download Ransomware APKs
         run: |
-          curl -O -H "User-Agent: Mozilla/5.0" -H "Accept: text/html" -H "Accept-Language: en-US" http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
-          echo "Download completed"
+          curl -O -L -H "User-Agent: Mozilla/5.0" -H "Accept: text/html" -H "Accept-Language: en-US" http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
+          echo "下载完成"
           ls -lh Ransomware-APKs.zip
+          # 检查文件大小是否接近 100MB
+          if [ $(stat -c%s Ransomware-APKs.zip) -lt 100000000 ]; then
+            echo "文件大小小于 100MB，下载可能不完整。"
+            exit 1
+          fi
 
       - name: Upload to Release
         uses: ncipollo/release-action@v1
