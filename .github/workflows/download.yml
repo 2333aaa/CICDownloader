@@ -1,10 +1,10 @@
 name: Download CICMalAnal2017
 
 on:
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:
 
 permissions:
-  contents: write  # For uploading to release
+  contents: write
 
 jobs:
   download-and-upload:
@@ -16,9 +16,9 @@ jobs:
 
       - name: Download Ransomware APKs
         run: |
-          wget -c http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
+          wget -c --user-agent="Mozilla/5.0" http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
           echo "Download completed"
-          ls -lh Ransomware-APKs.zip  # Verify size
+          ls -lh Ransomware-APKs.zip
 
       - name: Upload to Release
         uses: ncipollo/release-action@v1
