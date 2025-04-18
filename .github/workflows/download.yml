@@ -16,7 +16,7 @@ jobs:
 
       - name: Download Ransomware APKs
         run: |
-          wget -c --user-agent="Mozilla/5.0" http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
+          curl -O -H "User-Agent: Mozilla/5.0" -H "Accept: text/html" -H "Accept-Language: en-US" http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
           echo "Download completed"
           ls -lh Ransomware-APKs.zip
 
