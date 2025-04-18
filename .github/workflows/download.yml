@@ -1,0 +1,25 @@
+name: Download CICMalAnal2017
+
+on:
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  download-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Download Ransomware APKs
+        run: |
+          wget -c http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Ransomware-APKs.zip
+          wget -c http://cicresearch.ca/CICDataset/CICMalAnal2017/Dataset/APKs/Scareware-APKs.zip
+
+      - name: Upload to Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: cic-apks
+          artifacts: "Ransomware-APKs.zip,Scareware-APKs.zip"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
